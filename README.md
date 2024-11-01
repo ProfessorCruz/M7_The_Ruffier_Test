@@ -10,5 +10,5 @@ Name | Content
 ----------- | ---------
 inst.py | Instruções
 my_app.py | Primeira Janela
-screen2.py | Segunda Janela
-screen3.py | Terceira Janela
+second_win.py | Segunda Janela
+final_win.py | Terceira Janela
