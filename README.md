@@ -12,5 +12,3 @@ main.py | Main File
 screen1.py | Apresentação e Instruções
 screen2.py | Realização do Teste
 screen3.py | Apresentacáo dos Resultados
-
-novas informações para o commit!
