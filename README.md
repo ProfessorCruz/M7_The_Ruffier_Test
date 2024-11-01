@@ -8,7 +8,7 @@ A aplicacao será composta por três janelas.
 
 Name | Content
 ----------- | ---------
-inst.py | Instruções
+inst.py | Variáveis
 my_app.py | Primeira Janela
 second_win.py | Segunda Janela
 final_win.py | Terceira Janela
