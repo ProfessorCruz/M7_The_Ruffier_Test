@@ -8,7 +8,7 @@ A aplicacao será composta por três janelas.
 
 Name | Content
 ----------- | ---------
-main.py | Main File
-screen1.py | Apresentação e Instruções
-screen2.py | Realização do Teste
-screen3.py | Apresentacáo dos Resultados
+inst.py | Instruções
+my_app.py | Primeira Janela
+screen2.py | Segunda Janela
+screen3.py | Terceira Janela
