@@ -77,6 +77,7 @@ class TestWin(QWidget):
         self.hide() #oculta a janela atual, é o inverso de window.show()
         self.tw = FinalWin()
 
-app = QApplication([])
-mw = TestWin()
-app.exec()
+#incluídos para a realização de testes diretos na segunda janela
+#app = QApplication([])
+#mw = TestWin()
+#app.exec()
