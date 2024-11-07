@@ -1,10 +1,10 @@
 # TheRuffierTest
 
-O teste de ruffier é um teste de verificacao das capacidades cardiovasculares.
+O teste de Ruffier é um teste de verificação das capacidades cardiovasculares.
 
 O projeto é um script em Python desenvolvido com recurso a biblioteca PyQt5
 
-A aplicacao será composta por três janelas.
+A aplicação é composta por três janelas.
 
 Name | Content
 ----------- | ---------
