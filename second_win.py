@@ -1,4 +1,5 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer, QTime
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import *
 from inst import *
 from final_win import *
@@ -39,6 +40,10 @@ class TestWin(QWidget):
         self.test_line3 = QLineEdit('0')
         
         self.timer_label = QLabel('00:00:00')
+        #timer_label_font = QFont("Times",36,QFont.Bold)
+        #self.timer_label.setFont(timer_label_font)
+        #self.timer_label.setStyleSheet("color: rgb(0,0,0)")
+        self.timer_label.setStyleSheet("color: black; font-size: 48px; font-family: Times;font-weight: bold;")
         
         self.results_button = QPushButton('Send the results')
         
@@ -69,14 +74,75 @@ class TestWin(QWidget):
         self.setLayout(self.h_line)
         #pass
     
+    def timer_test(self):
+        global time
+        time = QTime(0,1,0)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer1Event)
+        self.timer.start(1000)
+    
+    def timer1Event(self):
+        global time
+        time = time.addSecs(-1)
+        self.timer_label.setText(time.toString("hh:mm:ss"))
+        self.timer_label.setFont(QFont("Times",36,QFont.Bold))
+        self.timer_label.setStyleSheet("color: rgb(0,0,0)")
+        if time.toString("hh:mm:ss") == "00:00:00":
+            self.timer.stop()
+        #pass
+    
+    def timer_sits(self):
+        global time
+        time = QTime(0,0,30) #timer definido em 30 segundos
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer2Event)
+        self.timer.start(1500) #um agachamento a cada 1.5 segundos
+    
+    def timer2Event(self):
+        global time
+        time = time.addSecs(-1)
+        self.timer_label.setText(time.toString("hh:mm:ss")[6:8])
+        self.timer_label.setFont(QFont("Times",36,QFont.Bold))
+        self.timer_label.setStyleSheet("color: rgb(0,0,0)")
+        if time.toString("hh:mm:ss") == "00:00:00":
+            self.timer.stop()
+    
+    def timer_final(self):
+        global time
+        time = QTime(0,0,5) #timer definido em 1 minuto
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer3Event)
+        self.timer.start(1000) #atualização a cada segundo
+    
+    def timer3Event(self):
+        global time
+        time = time.addSecs(-1)
+        self.timer_label.setText(time.toString("hh:mm:ss"))
+        self.timer_label.setFont(QFont("Times",36,QFont.Bold))
+        if int(time.toString("hh:mm:ss")[6:8]) >= 45:
+            self.timer_label.setStyleSheet("color: rgb(0,255,0)")
+        elif int(time.toString("hh:mm:ss")[6:8]) <= 15:
+            self.timer_label.setStyleSheet("color: rgb(0,255,0)")
+        else:
+            self.timer_label.setStyleSheet("color: rgb(0,0,0)")
+            
+        if time.toString("hh:mm:ss") == "00:00:00":
+            self.timer.stop()
     def connects(self): #manipula o evento click conectando a função com um botão
         self.results_button.clicked.connect(self.next_click)
+        
+        self.test_button1.clicked.connect(self.timer_test)
+        
+        self.test_button2.clicked.connect(self.timer_sits)
+        
+        self.test_button3.clicked.connect(self.timer_final)
         #pass
     
     def next_click(self): #processamento do botão: esconde a janela atual e cria a nova janela
         self.hide() #oculta a janela atual, é o inverso de window.show()
         self.tw = FinalWin()
 
+    
 #incluídos para a realização de testes diretos na segunda janela
 #app = QApplication([])
 #mw = TestWin()
