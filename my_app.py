@@ -1,8 +1,13 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
-from inst import *
 from second_win import *
 
+lang_pt = False
+if lang_pt:
+    from inst_pt import *
+else:
+    from inst import *
+    
 #txt_title = 'The Ruffier Test'
 #win_x , win_y = 200,100
 #win_width, win_height = 1000, 600

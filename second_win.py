@@ -4,6 +4,13 @@ from PyQt5.QtWidgets import *
 from inst import *
 from final_win import *
 
+class Experiment():
+    def __init__(self, age, test1, test2, test3):
+        self.age = age
+        self.t1 = test1
+        self.t2 = test2
+        self.t3 = test3
+
 class TestWin(QWidget):
     def __init__(self):
         super().__init__()
@@ -43,7 +50,7 @@ class TestWin(QWidget):
         #timer_label_font = QFont("Times",36,QFont.Bold)
         #self.timer_label.setFont(timer_label_font)
         #self.timer_label.setStyleSheet("color: rgb(0,0,0)")
-        self.timer_label.setStyleSheet("color: black; font-size: 48px; font-family: Times;font-weight: bold;")
+        self.timer_label.setStyleSheet("color: black; font-size: 48px; font-family: Times;font-weight: bold;") #a conversão to tamanho da fonte se da aproximadamente por: font_size_px = fontsize * 1,33
         
         self.results_button = QPushButton('Send the results')
         
@@ -54,11 +61,14 @@ class TestWin(QWidget):
         #add widgets a self.l_line
         self.l_line.addWidget(self.name_label, alignment = Qt.AlignLeft) #adiciona uma label no layout vertical no lado esquerdo
         self.l_line.addWidget(self.name_line, alignment = Qt.AlignLeft) #adiciona uma linha no layout vertical no lado esquerdo
+        
         self.l_line.addWidget(self.years_label, alignment = Qt.AlignLeft) #adiciona uma label no layout vertical no lado esquerdo
         self.l_line.addWidget(self.years_line, alignment = Qt.AlignLeft) #adiciona uma linha no layout vertical no lado esquerdo
+        
         self.l_line.addWidget(self.test_label1, alignment = Qt.AlignLeft) #adiciona uma label no layout vertical no lado esquerdo
         self.l_line.addWidget(self.test_button1, alignment = Qt.AlignLeft) #adiciona um botão no layout vertical no lado esquerdo
         self.l_line.addWidget(self.test_line1, alignment = Qt.AlignLeft) #adiciona uma linha no layout vertical no lado esquerdo
+        
         self.l_line.addWidget(self.test_label2, alignment = Qt.AlignLeft) #adiciona uma label no layout vertical no lado esquerdo
         self.l_line.addWidget(self.test_button2, alignment = Qt.AlignLeft) #adiciona um botão no layout vertical no lado esquerdo
         self.l_line.addWidget(self.test_label3, alignment = Qt.AlignLeft) #adiciona uma label no layout vertical no lado esquerdo
@@ -128,6 +138,7 @@ class TestWin(QWidget):
             
         if time.toString("hh:mm:ss") == "00:00:00":
             self.timer.stop()
+
     def connects(self): #manipula o evento click conectando a função com um botão
         self.results_button.clicked.connect(self.next_click)
         
@@ -140,9 +151,10 @@ class TestWin(QWidget):
     
     def next_click(self): #processamento do botão: esconde a janela atual e cria a nova janela
         self.hide() #oculta a janela atual, é o inverso de window.show()
-        self.tw = FinalWin()
-
-    
+        self.exp = Experiment(int(self.years_line.text()),int(self.test_line1.text()),int(self.test_line2.text()),int(self.test_line3.text()))
+        self.tw = FinalWin(self.exp)
+        
+        
 #incluídos para a realização de testes diretos na segunda janela
 #app = QApplication([])
 #mw = TestWin()

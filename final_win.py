@@ -2,9 +2,11 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 from inst import *
 
+
 class FinalWin(QWidget):
-    def __init__(self):
+    def __init__(self, exp):
         super().__init__()
+        self.exp = exp
         self.set_appear()
         self.initUI()
         #self.connects() #não há botões de navegação nesta janela.
@@ -17,10 +19,30 @@ class FinalWin(QWidget):
         #pass
 
     def initUI(self):
-        self.result_label = QLabel('Result')
-        self.message_label = QLabel('Message')
+        self.result_label = QLabel(txt_workheart + self.results())
+        self.message_label = QLabel(txt_index + str(self.index))
         self.line = QVBoxLayout()
         self.line.addWidget(self.result_label, alignment = Qt.AlignCenter)
         self.line.addWidget(self.message_label, alignment = Qt.AlignCenter)
         self.setLayout(self.line)
-
+    
+    def results(self):
+        if self.exp.age < 7:
+            self.index = 0
+            return "there is no data for this age"
+        
+        self.index = int(self.exp.t1) + int(self.exp.t2) + int(self.exp.t3)
+        self.index = self.index - 200
+        self.index = self.index / 100
+        print(self.index)
+        if self.exp.age >= 15:
+            if self.index >=15:
+                return txt_res1
+            elif self.index <= 14.9 and self.index >= 11:
+                return txt_res2
+            elif self.index <= 10.9 and self.index >= 6:
+                return txt_res3
+            elif self.index <= 5.9 and self.index >= 0.5:
+                return txt_res4
+            elif self.index <= 0.4:
+                return txt_res5
