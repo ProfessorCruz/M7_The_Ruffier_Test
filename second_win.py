@@ -119,7 +119,7 @@ class TestWin(QWidget):
     
     def timer_final(self):
         global time
-        time = QTime(0,0,5) #timer definido em 1 minuto
+        time = QTime(0,1,0) #timer definido em 1 minuto
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer3Event)
         self.timer.start(1000) #atualização a cada segundo
