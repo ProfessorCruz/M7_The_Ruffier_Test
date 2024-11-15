@@ -6,10 +6,10 @@ from final_win import *
 
 class Experiment():
     def __init__(self, age, test1, test2, test3):
-        self.age = age
-        self.t1 = test1
-        self.t2 = test2
-        self.t3 = test3
+        self.age = age #idade
+        self.t1 = test1 #p1
+        self.t2 = test2 #p2
+        self.t3 = test3 #p3
 
 class TestWin(QWidget):
     def __init__(self):
@@ -140,13 +140,11 @@ class TestWin(QWidget):
             self.timer.stop()
 
     def connects(self): #manipula o evento click conectando a função com um botão
-        self.results_button.clicked.connect(self.next_click)
         
-        self.test_button1.clicked.connect(self.timer_test)
-        
-        self.test_button2.clicked.connect(self.timer_sits)
-        
-        self.test_button3.clicked.connect(self.timer_final)
+        self.results_button.clicked.connect(self.next_click) #conecta o botão ao evento para ir para a próxima janela
+        self.test_button1.clicked.connect(self.timer_test) #conecta o botão ao evento para iniciar o timer para obter p1
+        self.test_button2.clicked.connect(self.timer_sits) #conecta o botão ao evento para iniciar o timer para os agachamentos
+        self.test_button3.clicked.connect(self.timer_final) #conecta o botão ao evento para iniciar o timer para obter p2 e p3
         #pass
     
     def next_click(self): #processamento do botão: esconde a janela atual e cria a nova janela
